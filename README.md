@@ -15,7 +15,7 @@ considerando que cada código abaixo em linguarem c esta dentro de uma função 
 ```c
 FILE * fp = fopen("exemplo", "w+");
 int count = 1;
-while (count > 5) {
+while (count < 5) {
   fprintf(fp, "%d ", count);
   printf("%d\n", count);
   count++;
@@ -27,7 +27,7 @@ fclose(fp);
 ```c
 FILE * fp = fopen("exemplo", "w+");
 int count = 1;
-while (count > 5) {
+while (count < 5) {
   fprintf(fp, "%d ", count);
   count++;
 }
@@ -37,14 +37,14 @@ fclose(fp);
 **t3** Tarefa 3
 ```c
 int count = 1;
-while (count > 5) {
+while (count < 5) {
   count++;
 }
 ```
 
 considere também os seguintes presupostos:
 1. cada acesso ao entrada/saída, tem um tempo de resposta de 2 _ticks_.
-2. a instrução `while (count > 5)` é executada em 1 _tick_.
+2. a instrução `while (count < 5)` é executada em 1 _tick_.
 3. o **SO** executa em 1 tick a troca de contexto.
 4. o **SO** usa 0 tick para realizar o escalonamento.
 5. o **SO** usa 0 tick para realizar mudança de estado das tarefas.
