@@ -43,11 +43,11 @@ while (count > 5) {
 ```
 
 considere também os seguintes presupostos:
-1. cada acesso ao entrada/saída, tem um tempo de resposta de 2 _clocks_.
-2. a instrução `while (count > 5)` é executada em 1 _clock_.
-3. o **SO** executa em 1 clock a troca de contexto.
-4. o **SO** usa 0 clock para realizar o escalonamento.
-5. o **SO** usa 0 clock para realizar mudança de estado das tarefas.
+1. cada acesso ao entrada/saída, tem um tempo de resposta de 2 _ticks_.
+2. a instrução `while (count > 5)` é executada em 1 _tick_.
+3. o **SO** executa em 1 tick a troca de contexto.
+4. o **SO** usa 0 tick para realizar o escalonamento.
+5. o **SO** usa 0 tick para realizar mudança de estado das tarefas.
 
 quanto aos estados das tarefas, considere a nomenclatura abaixo:
 - **no** : tarefa no estado novo
@@ -57,56 +57,55 @@ quanto aos estados das tarefas, considere a nomenclatura abaixo:
 - **fi** : tarefa finalizou sua execução
 
 por fim, considere a tabela abaixo:
-| Clock | SO    | t1         | t2         | t3         | Fila de pr |
-| ----- | ----- | ---------- | ---------- | ---------- | ---------- |
-| 01    | ex    | --         | --         | --         | --         |
-| 02    | ex    | no         | --         | --         | --         |
-| 03    | ex    | pr         | no         | --         | t1         |
-| 04    | ex    | --         | pr         | no         | t1, t2     |
-| 05    | ex t1 | --         | --         | pr         | t2, t3     |
-| 06    | --    | ex linha 1 | --         | --         | t2, t3     |
-| 07    | ex t2 | su 1       | --         | --         | t2, t3     |
-| 08    | --    | su 2       | ex linha 1 | --         | t3         |
-| 09    | ex t3 | pr         | su 1       | --         | t1         |
-| 10    | --    | --         | su 2       | ex linha 1 | t1         |
-| 11    | ??    | ??         | ??         | ??         | t1         |
-| 12    | ??    | ??         | ??         | ??         | t1         |
+| Tick | SO    | t1         | t2         | t3         | Fila de pr |
+| ---- | ----- | ---------- | ---------- | ---------- | ---------- |
+| 01   | ex    | --         | --         | --         | --         |
+| 02   | ex    | no         | --         | --         | --         |
+| 03   | ex    | pr         | no         | --         | t1         |
+| 04   | ex    | --         | pr         | no         | t1, t2     |
+| 05   | ex t1 | --         | --         | pr         | t2, t3     |
+| 06   | --    | ex linha 1 | --         | --         | t2, t3     |
+| 07   | ex t2 | su 1       | --         | --         | t2, t3     |
+| 08   | --    | su 2       | ex linha 1 | --         | t3         |
+| 09   | ex t3 | pr         | su 1       | --         | t1         |
+| 10   | --    | --         | su 2       | ex linha 1 | t1         |
+| 11   | ??    | ??         | ??         | ??         | t1         |
+| 12   | ??    | ??         | ??         | ??         | t1         |
 
-## Tarefa 1 - fatia tempo com valor 1 clock
+## Tarefa 1 - fatia tempo com valor 1 tick
 
-continue o preenchimento da tabela abaixo, considerando que o sistema operacional tem 1 _clock_ como valor da fatia de tempo (_quantum_ ou _time slice_).
+continue o preenchimento da tabela abaixo, considerando que o sistema operacional tem 1 _tick_ como valor da fatia de tempo (_quantum_ ou _time slice_).
 
-| Clock | SO    | t1         | t2         | t3         | Fila de pr |
-| ----- | ----- | ---------- | ---------- | ---------- | ---------- |
-| 01    | ex    | --         | --         | --         | --         |
-| 02    | ex    | no         | --         | --         | --         |
-| 03    | ex    | pr         | no         | --         | t1         |
-| 04    | ex    | --         | pr         | no         | t1, t2     |
-| 05    | ex t1 | --         | --         | pr         | t2, t3     |
-| 06    | --    | ex linha 1 | --         | --         | t2, t3     |
-| 07    | ex t2 | su 1       | --         | --         | t2, t3     |
-| 08    | --    | su 2       | ex linha 1 | --         | t3         |
-| 09    | ex t3 | pr         | su 1       | --         | t1         |
-| 10    | --    | --         | su 2       | ex linha 1 | t1         |
-| 11    | ??    | ??         | ??         | ??         | t1         |
-| 12    | ??    | ??         | ??         | ??         | t1         |
+| tick | SO    | t1         | t2         | t3         | Fila de pr |
+| ---- | ----- | ---------- | ---------- | ---------- | ---------- |
+| 01   | ex    | --         | --         | --         | --         |
+| 02   | ex    | no         | --         | --         | --         |
+| 03   | ex    | pr         | no         | --         | t1         |
+| 04   | ex    | --         | pr         | no         | t1, t2     |
+| 05   | ex t1 | --         | --         | pr         | t2, t3     |
+| 06   | --    | ex linha 1 | --         | --         | t2, t3     |
+| 07   | ex t2 | su 1       | --         | --         | t2, t3     |
+| 08   | --    | su 2       | ex linha 1 | --         | t3         |
+| 09   | ex t3 | pr         | su 1       | --         | t1         |
+| 10   | --    | --         | su 2       | ex linha 1 | t1         |
+| 11   | ??    | ??         | ??         | ??         | t1         |
+| 12   | ??    | ??         | ??         | ??         | t1         |
 
-## Tarefa 2 - fatia tempo com valor 10 clock
+## Tarefa 2 - fatia tempo com valor 10 ticks
 
-continue o preenchimento da tabela abaixo, considerando que o sistema operacional tem 10 _clock_ como valor da fatia de tempo (_quantum_ ou _time slice_).
+continue o preenchimento da tabela abaixo, considerando que o sistema operacional tem 10 _ticks_ como valor da fatia de tempo (_quantum_ ou _time slice_).
 
-| Clock | SO    | t1         | t2         | t3         | Fila de pr |
-| ----- | ----- | ---------- | ---------- | ---------- | ---------- |
-| 01    | ex    | --         | --         | --         | --         |
-| 02    | ex    | no         | --         | --         | --         |
-| 03    | ex    | pr         | no         | --         | t1         |
-| 04    | ex    | --         | pr         | no         | t1, t2     |
-| 05    | ex t1 | --         | --         | pr         | t2, t3     |
-| 06    | --    | ex linha 1 | --         | --         | t2, t3     |
-| 07    | ex t2 | su 1       | --         | --         | t2, t3     |
-| 08    | --    | su 2       | ex linha 1 | --         | t3         |
-| 09    | ex t3 | pr         | su 1       | --         | t1         |
-| 10    | --    | --         | su 2       | ex linha 1 | t1         |
-| 11    | ??    | ??         | ??         | ??         | t1         |
-| 12    | ??    | ??         | ??         | ??         | t1         |
-
+| tick | SO    | t1         | t2         | t3         | Fila de pr |
+| ---- | ----- | ---------- | ---------- | ---------- | ---------- |
+| 01   | ex    | --         | --         | --         | --         |
+| 02   | ex    | no         | --         | --         | --         |
+| 03   | ex    | pr         | no         | --         | t1         |
+| 04   | ex    | --         | pr         | no         | t1, t2     |
+| 05   | ex t1 | --         | --         | pr         | t2, t3     |
+| 06   | --    | ex linha 1 | --         | --         | t2, t3     |
+| 07   | ex t2 | su 1       | --         | --         | t2, t3     |
+| 08   | --    | su 2       | ex linha 1 | --         | t3         |
+| 09   | ex t3 | pr         | su 1       | --         | t1         |
+| 10   | --    | --         | su 2       | ex linha 1 | t1         |
+| 11   | ??    | ??         | ??         | ??         | t1         |
+| 12   | ??    | ??         | ??         | ??         | t1         |
