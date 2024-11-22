@@ -6,6 +6,7 @@
 - **Público alvo**: alunos da disciplina de SO (Sistemas Operacionais) do curso de TADS (Superior em Tecnologia em Análise e Desenvolvimento de Sistemas) no CNAT-IFRN (Instituto Federal de Educação, Ciência e Tecnologia do Rio Grande do Norte - Campus Natal-Central).
 - disciplina: **SO** Sistemas Operacionais, turma de 2024.2
 - professor: [Leonardo A. Minora](https://github.com/leonardo-minora)
+- Discente: wesley costa
 
 ## Descrição inicial da tarefa
 
@@ -76,36 +77,49 @@ por fim, considere a tabela abaixo:
 
 continue o preenchimento da tabela abaixo, considerando que o sistema operacional tem 1 _tick_ como valor da fatia de tempo (_quantum_ ou _time slice_).
 
-| tick | SO    | t1         | t2         | t3         | Fila de pr |
-| ---- | ----- | ---------- | ---------- | ---------- | ---------- |
-| 01   | ex    | --         | --         | --         | --         |
-| 02   | ex    | no         | --         | --         | --         |
-| 03   | ex    | pr         | no         | --         | t1         |
-| 04   | ex    | --         | pr         | no         | t1, t2     |
-| 05   | ex t1 | --         | --         | pr         | t2, t3     |
-| 06   | --    | ex linha 1 | --         | --         | t2, t3     |
-| 07   | ex t2 | su 1       | --         | --         | t2, t3     |
-| 08   | --    | su 2       | ex linha 1 | --         | t3         |
-| 09   | ex t3 | pr         | su 1       | --         | t1         |
-| 10   | --    | --         | su 2       | ex linha 1 | t1         |
-| 11   | ??    | ??         | ??         | ??         | t1         |
-| 12   | ??    | ??         | ??         | ??         | t1         |
+| Tick | SO      | t1         | t2         | t3         | Fila de pr |
+| ---- | ------- | ---------- | ---------- | ---------- | ---------- |
+| 01   | ex      | --         | --         | --         | --         |
+| 02   | ex      | no         | --         | --         | --         |
+| 03   | ex      | pr         | no         | --         | t1         |
+| 04   | ex      | --         | pr         | no         | t1, t2     |
+| 05   | ex t1   | --         | --         | pr         | t2, t3     |
+| 06   | --      | ex linha 1 | --         | --         | t2, t3     |
+| 07   | ex t2   | su 1       | --         | --         | t2, t3     |
+| 08   | --      | su 2       | ex linha 1 | --         | t3         |
+| 09   | ex t3   | pr         | su 1       | --         | t1         |
+| 10   | --      | --         | su 2       | ex linha 1 | t1         |
+| 11   | ex t1   | ex linha 2 | su 1       | --         | t2         |
+| 12   | --      | su 3       | su 2       | --         | t2         |
+| 13   | ex t2   | su 3       | ex linha 2 | --         | t3         |
+| 14   | --      | su 4       | su 3       | ex linha 1 | t1         |
+| 15   | ex t1   | su 4       | su 3       | ex linha 2 | --         |
+| 16   | --      | fi         | su 4       | ex linha 2 | t2         |
+| 17   | ex t2   | fi         | fi         | ex linha 2 | t3         |
+| 18   | --      | fi         | fi         | fi         | --         |
+
 
 ## Tarefa 2 - fatia tempo com valor 10 ticks
 
 continue o preenchimento da tabela abaixo, considerando que o sistema operacional tem 10 _ticks_ como valor da fatia de tempo (_quantum_ ou _time slice_).
 
-| tick | SO    | t1         | t2         | t3         | Fila de pr |
-| ---- | ----- | ---------- | ---------- | ---------- | ---------- |
-| 01   | ex    | --         | --         | --         | --         |
-| 02   | ex    | no         | --         | --         | --         |
-| 03   | ex    | pr         | no         | --         | t1         |
-| 04   | ex    | --         | pr         | no         | t1, t2     |
-| 05   | ex t1 | --         | --         | pr         | t2, t3     |
-| 06   | --    | ex linha 1 | --         | --         | t2, t3     |
-| 07   | ex t2 | su 1       | --         | --         | t2, t3     |
-| 08   | --    | su 2       | ex linha 1 | --         | t3         |
-| 09   | ex t3 | pr         | su 1       | --         | t1         |
-| 10   | --    | --         | su 2       | ex linha 1 | t1         |
-| 11   | ??    | ??         | ??         | ??         | t1         |
-| 12   | ??    | ??         | ??         | ??         | t1         |
+| Tick | SO      | t1         | t2         | t3         | Fila de pr |
+| ---- | ------- | ---------- | ---------- | ---------- | ---------- |
+| 01   | ex      | --         | --         | --         | --         |
+| 02   | ex      | no         | --         | --         | --         |
+| 03   | ex      | pr         | no         | --         | t1         |
+| 04   | ex      | --         | pr         | no         | t1, t2     |
+| 05   | ex t1   | --         | --         | pr         | t2, t3     |
+| 06   | --      | ex linha 1 | --         | --         | t2, t3     |
+| 07   | ex t1   | su 1       | --         | --         | t2, t3     |
+| 08   | --      | su 2       | ex linha 1 | --         | t3         |
+| 09   | ex t3   | pr         | su 1       | --         | t1         |
+| 10   | --      | --         | su 2       | ex linha 1 | t1         |
+| 11   | ex t3   | pr         | su 2       | ex linha 2 | t1         |
+| 12   | --      | ex linha 3 | su 2       | ex linha 3 | --         |
+| 13   | ex t1   | ex linha 4 | su 2       | fi         | t2         |
+| 14   | --      | su 3       | su 4       | fi         | t2         |
+| 15   | ex t2   | su 3       | fi         | fi         | --         |
+| 16   | --      | su 4       | fi         | fi         | --         |
+| 17   | ex t1   | fi         | fi         | fi         | --         |
+
