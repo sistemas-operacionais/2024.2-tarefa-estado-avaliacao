@@ -82,14 +82,26 @@ continue o preenchimento da tabela abaixo, considerando que o sistema operaciona
 | 02   | ex    | no         | --         | --         | --         |
 | 03   | ex    | pr         | no         | --         | t1         |
 | 04   | ex    | --         | pr         | no         | t1, t2     |
-| 05   | ex t1 | --         | --         | pr         | t2, t3     |
+| 05   | ex t1 | ex linha 1         | --         | pr         | t2, t3     |
 | 06   | --    | ex linha 1 | --         | --         | t2, t3     |
-| 07   | ex t2 | su 1       | --         | --         | t2, t3     |
-| 08   | --    | su 2       | ex linha 1 | --         | t3         |
-| 09   | ex t3 | pr         | su 1       | --         | t1         |
-| 10   | --    | --         | su 2       | ex linha 1 | t1         |
-| 11   | ??    | ??         | ??         | ??         | t1         |
-| 12   | ??    | ??         | ??         | ??         | t1         |
+| 07   | ex t2 | su 1       | ex linha 1         | pr         |  t3     |
+| 08   | --    | su 2       | su (E/S) | pr         | t3         |
+| 09   | ex t3 | pr         | su        | ex linha 1        | t1         |
+| 10   | --    | --         | su        | ex linha 1 | t1         |
+| 11   | ex t1    | ex linha 2        | su         | pr        | t2, t3         |
+| 12   | --    |  su (E/S)       | ex linha 1        | pr        | t3         |
+| 13   |  ex t2   |   	su     |   	ex linha 2     |   pr     |   t3     |
+| 14   |  ex t3   |     su   |     su   |   	ex linha 2     |  t1      |
+| 15   |  ex t1   |    ex linha 3    |   su     |   pr     |   	t2, t3     |
+| 16   |  	ex   |   su (E/S)     |    su    |    	ex linha 2    |  t2      |
+| 17   |  	ex t2   |   pr     |    ex linha 3    |    pr    |     t1, t3    |
+| 18   |   	ex t3  |    pr    |    su    |   	ex linha 3     |   t1, t2     |
+| 19   |   	ex t1	  |   ex linha 4    |   su    |    	pr    |   	t2, t3     |
+| 20   |   ex  |    fi   |   su     |    	ex linha 4    |   t3     |
+| 21   |  ex   |     fi   |   su     |   ex linha 5     |    	t2    |
+| 22   |  ex   |    fi    |    su    |    fi    |    --    |
+
+
 
 ## Tarefa 2 - fatia tempo com valor 10 ticks
 
@@ -101,11 +113,21 @@ continue o preenchimento da tabela abaixo, considerando que o sistema operaciona
 | 02   | ex    | no         | --         | --         | --         |
 | 03   | ex    | pr         | no         | --         | t1         |
 | 04   | ex    | --         | pr         | no         | t1, t2     |
-| 05   | ex t1 | --         | --         | pr         | t2, t3     |
-| 06   | --    | ex linha 1 | --         | --         | t2, t3     |
-| 07   | ex t2 | su 1       | --         | --         | t2, t3     |
-| 08   | --    | su 2       | ex linha 1 | --         | t3         |
-| 09   | ex t3 | pr         | su 1       | --         | t1         |
-| 10   | --    | --         | su 2       | ex linha 1 | t1         |
-| 11   | ??    | ??         | ??         | ??         | t1         |
-| 12   | ??    | ??         | ??         | ??         | t1         |
+| 05   | ex t1 | ex linha 1         | --         | pr         | t2, t3     |
+| 06   | ex t1    | su (E/S) | --         | pr         | t2, t3     |
+| 07   | ex t1 | su        | 	ex linha 1         | pr         |  t3     |
+| 08   | ex t1    | su        | su (E/S) | pr         | t3         |
+| 09   | ex t1 | pr        | su        | ex linha 1        | t2         |
+| 10   | ex t1    | ex linha 2         | su        | pr | t1         |
+| 11   | ex t2    | su         | ex linha 1         | pr        | t3         |
+| 12   | ex t2    | su         | su         | pr         | t1, t3        |
+| 13   | ex t3    |  pr     |   su    |   ex linha 2    |   t1  |
+| 14   |  	ex t1   |   	ex linha 3    |   su    |  pr     |  t2, t3   |
+| 15   |   ex  |   	su (E/S)    |   su    |   	ex linha 3    |  t2   |
+| 16   |  	ex t2   |   pr    |   	ex t2   |   pr    |  	t1, t3  |
+| 17   |  ex t3   |   pr    |   su   |   	ex linha 4    |  t1, t2  |
+| 18   |  	ex t1   |   	ex linha 4    |   su    |   pr    |  t2, t3   |
+| 19   |  ex   |    fi   |   su    |   ex linha 5    |   t3  |
+| 20   |   	ex t3  |    fi   |    su   |    	ex linha 6   |   t2  |
+| 21   |  ex   |    fi   |    su   |   fi    |  --   |
+
