@@ -1,0 +1,44 @@
+Tarefa 1
+
+ tick | SO      | t1         | t2            | t3         | Fila de pr |
+| ---- | ------- | ---------- | ------------- | ---------- | ---------- |
+| 01   | ex      | --         | --            | --         | --         |
+| 02   | ex      | no         | --            | --         | --         |
+| 03   | ex      | pr         | no            | --         | t1         |
+| 04   | ex      | --         | pr            | no         | t1, t2     |
+| 05   | ex t1   | --         | --            | pr         | t2, t3     |
+| 06   | --      | ex linha 1 | --            | --         | t2, t3     |
+| 07   | ex t2   | su 1       | --            | --         | t2, t3     |
+| 08   | --      | su 2       | ex linha 1    | --         | t3         |
+| 09   | ex t3   | pr         | su 1          | --         | t1         |
+| 10   | --      | --         | su 2          | ex linha 1 | t1         |
+| 11   | ex t1   | ex linha 2 | su 2          | pr         | t2, t3     |
+| 12   | --      | su 3       | su 2          | ex linha 1 | t2         |
+| 13   | ex t2   | su 3       | su 1 linha 2  | --         | t3         |
+| 14   | --      | su 3       | su 2 linha 3  | ex linha 1 | t1         |
+| 15   | ex t3   | pr         | su 3          | --         | t1         |
+
+Tarefa 2
+
+| Tick | SO      | t1         | t2           | t3         | Fila de pr |
+| ---- | ------- | ---------- | ------------ | ---------- | ---------- |
+| 01   | ex      | --         | --           | --         | --         |
+| 02   | ex      | no         | --           | --         | --         |
+| 03   | ex      | pr         | no           | --         | t1         |
+| 04   | ex      | --         | pr           | no         | t1, t2     |
+| 05   | ex t1   | --         | --           | pr         | t2, t3     |
+| 06   | --      | ex linha 1 | --           | --         | t2, t3     |
+| 07   | ex t2   | su 1       | --           | --         | t2, t3     |
+| 08   | --      | su 2       | ex linha 1   | --         | t3         |
+| 09   | ex t3   | pr         | su 1         | --         | t1         |
+| 10   | --      | --         | su 2         | ex linha 1 | t1         |
+| 11   | ex t1   | ex linha 2 | su           | pr         | t2, t3     |
+| 12   | ex t1   | ex linha 3 | su           | pr         | t2, t3     |
+| 13   | ex t1   | su 1       | su           | pr         | t2, t3     |
+| 14   | ex t2   | pr         | ex linha 1   | pr         | t3, t1     |
+| 15   | ex t2   | pr         | ex linha 2   | pr         | t3, t1     |
+| 16   | ex t2   | pr         | su 1         | pr         | t3, t1     |
+| 17   | ex t3   | pr         | su           | ex linha 1 | t1         |
+| 18   | ex t3   | pr         | su           | ex linha 2 | t1         |
+| 19   | ex t3   | pr         | su           | ex linha 3 | t1         |
+| 20   | ex t1   | ex linha 4 | su           | pr         | t2, t3     |
